@@ -1,19 +1,25 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class StudentSolver {
 	public static ArrayList<Pair<Integer,Integer>> solve(int[][] board){
 		ArrayList<Pair<Integer, Integer>> indeces = new ArrayList<Pair<Integer, Integer>>();
-		ArrayList<Integer> max = new ArrayList<Integer>();
+		ArrayList<Integer> isolatedColumn = new ArrayList<Integer>();
 		
 		int rows = board.length;
 		int columns = board[0].length;
 		
 		for (int i=0; i<rows; i++) {
-			max.add(board[i][0]);
+			isolatedColumn.add(board[i][0]);
 		}
 		
-		for (int i : max)
+		for (int i : isolatedColumn)
 			System.out.println(i);
+		int maxValue = Collections.max(isolatedColumn);
+		System.out.println("Max Value "+maxValue);
+		int indexOfMax =isolatedColumn.indexOf(maxValue);
+		System.out.println("Index of Max Value "+indexOfMax);
+		
 		
 		
 		return indeces; 
