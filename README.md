@@ -1,0 +1,2 @@
+# AlienChess
+ Dynamic programming 
