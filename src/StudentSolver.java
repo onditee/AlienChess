@@ -27,7 +27,7 @@ public class StudentSolver {
 			//Add the pair to indexes 
 			
 			Pair index = new Pair(indexOfMax,j);
-			indeces.add(index);
+			//indeces.add(index);
 			
 			//Going to implement restrictions 
 			int m = (int)index.first;
@@ -92,6 +92,16 @@ public class StudentSolver {
 		    }
 		    System.out.println();
 		}
+		
+		for (int i = 0; i<rows; i++){
+		    for (int j = 0; j<columns; j++){
+		    	if (board[i][j]!=0) {
+		    		Pair newindex = new Pair(i,j);
+					indeces.add(newindex);
+		    	}
+		    }
+		}
+		
 		
 		System.out.println("Rows:"+rows);
 		
