@@ -21,11 +21,40 @@ public class StudentSolver {
 		int indexOfMax =isolatedColumn.indexOf(maxValue);
 		System.out.println("Index of Max Value "+indexOfMax);
 		
-		//Going to implement restrictions 
+		//Add the pair to indexes 
 		Pair index = new Pair(indexOfMax,column);
-		
 		indeces.add(index);
+		//Going to implement restrictions 
+		if ((int)index.first == 0) {
+			
+			
+		}
+		int m = (int)index.first;
+		int n = (int)index.second;
 		
+		if (m == 0) {
+			board[m+1][n] =0;
+			board[m][n+1] =0;
+		}
+		else if (m ==rows-1) {
+			board[m-1][n] =0;
+			board[m+1][n] =0;
+		}
+		else {
+			board[m-1][n] =0;
+			board[m+1][n] =0;
+			board[m][n+1] =0;
+		}
+		
+		
+		for (int i = 0; i<rows; i++){
+		    for (int j = 0; j<columns; j++){
+		        System.out.print(board[i][j]+" ");
+		    }
+		    System.out.println();
+		}
+		
+		System.out.println("Rows:"+rows);
 		
 		
 		return indeces; 
