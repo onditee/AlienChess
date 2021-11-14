@@ -10,42 +10,81 @@ public class StudentSolver {
 		int columns = board[0].length;
 		int column = 0;
 		
-		for (int i=0; i<rows; i++) {
-			isolatedColumn.add(board[i][column]);
-		}
-		
-		for (int i : isolatedColumn)
-			System.out.println(i);
-		int maxValue = Collections.max(isolatedColumn);
-		System.out.println("Max Value "+maxValue);
-		int indexOfMax =isolatedColumn.indexOf(maxValue);
-		System.out.println("Index of Max Value "+indexOfMax);
-		
-		//Add the pair to indexes 
-		Pair index = new Pair(indexOfMax,column);
-		indeces.add(index);
-		//Going to implement restrictions 
-		if ((int)index.first == 0) {
+		for(int j=0; j<columns; j++) {
+			for (int i=0; i<rows; i++) {
+				
+				isolatedColumn.add(board[i][j]);
+			}
 			
+			for (int i : isolatedColumn)//clear her
+				System.out.println(i);
+			
+			int maxValue = Collections.max(isolatedColumn);
+			System.out.println("Max Value "+maxValue);
+			
+			int indexOfMax =isolatedColumn.indexOf(maxValue);
+			System.out.println("Index of Max Value "+indexOfMax);
+			//Add the pair to indexes 
+			
+			Pair index = new Pair(indexOfMax,j);
+			indeces.add(index);
+			
+			//Going to implement restrictions 
+			int m = (int)index.first;
+			int n = (int)index.second;
+			if (n ==0) {
+				
+				if (m == 0) {
+					board[m+1][n] =0;
+					board[m][n+1] =0;
+				}
+				else if (m ==rows-1) {
+					board[m-1][n] =0;
+					board[m][n+1] =0;
+				}
+				else {
+					board[m-1][n] =0;
+					board[m+1][n] =0;
+					board[m][n+1] =0;
+				}
+				
+			}
+			else if (n==columns-1) {
+				if (m == 0) {
+					board[m+1][n] =0;
+					board[m][n-1] =0;
+				}
+				else if (m ==rows-1) {
+					board[m-1][n] =0;
+					board[m][n-1] =0;
+				}
+				else {
+					board[m-1][n] =0;
+					board[m+1][n] =0;
+					board[m][n-1] =0;
+				}
+			}
+			else {
+				if (m == 0) {
+					board[m+1][n] =0;
+					board[m][n+1] =0;
+					board[m][n-1] =0;
+				}
+				else if (m ==rows-1) {
+					board[m-1][n] =0;
+					board[m][n+1] =0;
+					board[m][n-1] =0;
+				}
+				else {
+					board[m-1][n] =0;
+					board[m+1][n] =0;
+					board[m][n+1] =0;
+					board[m][n-1] =0;
+				}
+			}
+			isolatedColumn.clear();
 			
 		}
-		int m = (int)index.first;
-		int n = (int)index.second;
-		
-		if (m == 0) {
-			board[m+1][n] =0;
-			board[m][n+1] =0;
-		}
-		else if (m ==rows-1) {
-			board[m-1][n] =0;
-			board[m+1][n] =0;
-		}
-		else {
-			board[m-1][n] =0;
-			board[m+1][n] =0;
-			board[m][n+1] =0;
-		}
-		
 		
 		for (int i = 0; i<rows; i++){
 		    for (int j = 0; j<columns; j++){
