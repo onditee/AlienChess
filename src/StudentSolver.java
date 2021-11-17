@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class StudentSolver {
 	public static ArrayList<Pair<Integer, Integer>> solve(int[][] board) {
@@ -10,7 +12,7 @@ public class StudentSolver {
 
 		int rows = board.length;
 		int columns = board[0].length;
-
+		System.out.println("columns " + columns);
 		for (int j = 0; j < columns; j++) {
 			for (int i = 0; i < rows; i++) {
 
@@ -124,7 +126,7 @@ public class StudentSolver {
 			for (int j = 0; j < columns; j++) {
 				if (j<columns-1) {
 					//This makes sure that the element to the immediate right is not taken up
-					if (board[i][j]!=0 && board[i][j+1] != 0) {//add or for elements above
+					if (board[i][j]!=0 && board[i][j+1] != 0 ||board[i][j]!=0 && board[i+1][j] != 0) {//add or for elements above
 						//System.out.println("This:"+ board[i][j]);
 						repeat =true;
 					}
@@ -144,8 +146,10 @@ public class StudentSolver {
 		for(Pair p: reursionIndexes) {
 			indeces.add(p);
 		}
+		//reursionIndexes.clear();
 		System.out.println("Rows:" + rows);
 		System.out.println("Repeat: " + repeat);
+		
 
 		return indeces;
 	}
