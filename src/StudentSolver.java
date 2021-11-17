@@ -124,13 +124,14 @@ public class StudentSolver {
 		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				if (j<columns-1) {
+				if (j<columns-1 && i<rows-1) {
 					//This makes sure that the element to the immediate right is not taken up
 					if (board[i][j]!=0 && board[i][j+1] != 0 ||board[i][j]!=0 && board[i+1][j] != 0) {//add or for elements above
 						//System.out.println("This:"+ board[i][j]);
 						repeat =true;
 					}
 				}
+				
 				if (board[i][j] != 0 && repeat ==false) {
 					Pair newindex = new Pair(i, j);
 					indeces.add(newindex);
@@ -149,25 +150,20 @@ public class StudentSolver {
 		//reursionIndexes.clear();
 		System.out.println("Rows:" + rows);
 		System.out.println("Repeat: " + repeat);
-		
-
-		return indeces;
+		ArrayList<Pair<Integer, Integer>> updatedIndeces = new ArrayList<Pair<Integer, Integer>>(new HashSet<Pair<Integer, Integer>>(indeces));
+		return updatedIndeces;
 	}
 
 	
-	  public static void main(String[] args) { 
-		  int[][] board ={ 
-				  {98,38,6}, 
-				  {73,99,35}, 
-				  {26,6,48}, 
-				  {34,78,92},
-				  {21,46,65},
-				  {55,5,66},
-				  {76,99,20}};
-		  
-	  System.out.println(solve(board));
-	  
-	  }
+	/*
+	 * public static void main(String[] args) { int[][] board ={
+	 * {35,90,54,62,62,69}, {89,17,59,13,76,24}, {73,1,57,11,60,34},
+	 * {52,94,21,67,9,77}};
+	 * 
+	 * System.out.println(solve(board));
+	 * 
+	 * }
+	 */
 	 
 	 
 
@@ -180,4 +176,8 @@ public class StudentSolver {
 /*
  * {9,94,51,29,76}, {92,68,23,62,42}, {93,64,22,5,51}, {31,17,24,21,49},
  * {17,45,47,71,35}}
+ */
+/*
+ * {98,38,6}, {73,99,35}, {26,6,48}, {34,78,92}, {21,46,65}, {55,5,66},
+ * {76,99,20}};
  */
