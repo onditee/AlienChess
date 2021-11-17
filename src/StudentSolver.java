@@ -95,7 +95,10 @@ public class StudentSolver {
 						isolatedColumn.remove(indexOfMax);
 					}	
 				}
-				
+				if (exit ==true) {
+					indeces.add(index);
+					board[m][n]=0;
+				}
 			}
 
 			isolatedColumn.clear();
@@ -108,10 +111,16 @@ public class StudentSolver {
 			}
 			System.out.println();
 		}
-
+		boolean repeat = false;
+		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				if (board[i][j] != 0) {
+				if (j<columns-1) {
+					if (board[i][j+1] != 0) {
+						repeat =true;
+					}
+				}
+				if (board[i][j] != 0 && repeat ==false) {
 					Pair newindex = new Pair(i, j);
 					indeces.add(newindex);
 				}
@@ -123,15 +132,13 @@ public class StudentSolver {
 		return indeces;
 	}
 
-	  public static void main(String[] args) { 
-		  int[][] board ={
-				  {35,90,54,62,62,69},
-				  {89,17,59,13,76,24}, 
-				  {73,1,57,11,60,34}, 
-				  {54,94,21,67,9,77}};
+	
+	  public static void main(String[] args) { int[][] board ={ {9,94,51,29,76},
+	  {92,68,23,62,42}, {93,64,22,5,51}, {31,17,24,21,49}, {17,45,47,71,35}};
 	  System.out.println(solve(board));
 	  
 	  }
+	 
 	 
 
 }
