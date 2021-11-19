@@ -12,23 +12,23 @@ public class StudentSolver {
 
 		int rows = board.length;
 		int columns = board[0].length;
-		System.out.println("columns " + columns);
+		//System.out.println("columns " + columns);
 		for (int j = 0; j < columns; j++) {
 			for (int i = 0; i < rows; i++) {
 
 				isolatedColumn.add(board[i][j]);
 			}
 
-			for (int i : isolatedColumn)// clear her
-				System.out.println(i);
+			//for (int i : isolatedColumn)// clear her
+			//	System.out.println(i);
 			boolean exit = false;
 			while (exit == false) {
 				
 				int maxValue = Collections.max(isolatedColumn);
-				System.out.println("Max Value " + maxValue);
+				//System.out.println("Max Value " + maxValue);
 
 				int indexOfMax = isolatedColumn.indexOf(maxValue);
-				System.out.println("Index of Max Value " + indexOfMax);
+				//System.out.println("Index of Max Value " + indexOfMax);
 				// Add the pair to indexes
 
 				Pair index = new Pair(indexOfMax, j);
@@ -124,17 +124,25 @@ public class StudentSolver {
 		
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				if (j<columns-1 && i<rows-1) {
+				if (j<columns-1) {
 					//This makes sure that the element to the immediate right is not taken up
-					if (board[i][j]!=0 && board[i][j+1] != 0 ||board[i][j]!=0 && board[i+1][j] != 0) {//add or for elements above
+					if (board[i][j]!=0 && board[i][j+1] != 0) {//add or for elements above
 						//System.out.println("This:"+ board[i][j]);
 						repeat =true;
 					}
+				}
+				if (i<rows-1) {
+					
+					if (board[i][j]!=0 && board[i+1][j] != 0) {
+						repeat =true;
+					}
+					
 				}
 				
 				if (board[i][j] != 0 && repeat ==false) {
 					Pair newindex = new Pair(i, j);
 					indeces.add(newindex);
+					//System.out.println(newindex);
 				}
 			}
 		}
@@ -148,17 +156,16 @@ public class StudentSolver {
 			indeces.add(p);
 		}
 		//reursionIndexes.clear();
-		System.out.println("Rows:" + rows);
-		System.out.println("Repeat: " + repeat);
+		//System.out.println("Rows:" + rows);
+		//System.out.println("Repeat: " + repeat);
 		ArrayList<Pair<Integer, Integer>> updatedIndeces = new ArrayList<Pair<Integer, Integer>>(new HashSet<Pair<Integer, Integer>>(indeces));
 		return updatedIndeces;
 	}
 
 	
 	/*
-	 * public static void main(String[] args) { int[][] board ={
-	 * {35,90,54,62,62,69}, {89,17,59,13,76,24}, {73,1,57,11,60,34},
-	 * {52,94,21,67,9,77}};
+	 * public static void main(String[] args) { int[][] board ={ {98,38,6},
+	 * {73,99,35}, {26,6,48}, {34,78,92}, {21,46,65}, {55,5,66}, {76,99,20}};
 	 * 
 	 * System.out.println(solve(board));
 	 * 
@@ -180,4 +187,8 @@ public class StudentSolver {
 /*
  * {98,38,6}, {73,99,35}, {26,6,48}, {34,78,92}, {21,46,65}, {55,5,66},
  * {76,99,20}};
+ */
+/*
+ * {48,93,18}, {79,1,66}, {89,83,38}, {34,4,34}, {37,49,17}, {75,23,55},
+ * {35,45,84}};
  */
